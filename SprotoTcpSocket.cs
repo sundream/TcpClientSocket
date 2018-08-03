@@ -48,6 +48,7 @@ namespace Net {
 		}
 
 		public void SendResponse(string proto,SprotoObject response,Int64 session) {
+			Int64 message_id = this.gen_message_id();
 			RpcPackage package = this.Proto.PackResponse(proto,response,session,message_id);
 			this.TcpSocket.Send(package.data,package.size);
 		}
