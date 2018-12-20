@@ -15,7 +15,7 @@ namespace TestNet {
 	ud 2 : integer
 }
 
-login_ping 1006 {
+C2GS_Ping 1006 {
 	request {
 		str 0 : string
 	}
@@ -29,7 +29,7 @@ login_ping 1006 {
 	ud 2 : integer
 }
 
-login_pong 1008 {
+GS2C_Pong 1108 {
 	request {
 		str 0 : string
 		time 1 : integer
@@ -47,7 +47,7 @@ login_pong 1008 {
 			string host = "111.230.108.129";
 			int port = 8888;
 			Client.TcpSocket.Connect(host,port);
-			Client.Dispatcher.AddHandler("login_pong",this.HandlerLoginPong);
+			Client.Dispatcher.AddHandler("GS2C_Pong",this.HandlerLoginPong);
 
 
 			while (true) {
@@ -62,17 +62,17 @@ login_pong 1008 {
 				Client.TcpSocket.Name,Message.proto,Message.tag,Message.ud,Message.session,Message.type,Message.request,Message.response);
 			Console.WriteLine(msg);
 			//Debug.Log(msg);
-			SprotoObject request = Client.Proto.C2S.NewSprotoObject("login_ping.request");
+			SprotoObject request = Client.Proto.C2S.NewSprotoObject("C2GS_Ping.request");
 			request["str"] = "ping";
-			Client.SendRequest("login_ping",request);
+			Client.SendRequest("C2GS_Ping",request);
 		}
 
 		private void OnConnect(SprotoTcpSocket Client) {
 			//Console.WriteLine("OnConnect");
 			// send first ping when onconnect
-			SprotoObject request = Client.Proto.C2S.NewSprotoObject("login_ping.request");
+			SprotoObject request = Client.Proto.C2S.NewSprotoObject("C2GS_Ping.request");
 			request["str"] = "ping";
-			Client.SendRequest("login_ping",request);
+			Client.SendRequest("C2GS_Ping",request);
 		}
 
 		private void OnClose(SprotoTcpSocket Client) {

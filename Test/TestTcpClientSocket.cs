@@ -17,7 +17,7 @@ namespace TestNet {
 	ud 2 : integer
 }
 
-login_ping 1006 {
+C2GS_Ping 1006 {
 	request {
 		str 0 : string
 	}
@@ -31,7 +31,7 @@ login_ping 1006 {
 	ud 2 : integer
 }
 
-login_pong 1008 {
+GS2C_Pong 1108 {
 	request {
 		str 0 : string
 		time 1 : integer
@@ -62,9 +62,9 @@ login_pong 1008 {
 
 		public void ClientLogic() {
 			// ping
-			SprotoObject request = Proto.C2S.NewSprotoObject("login_ping.request");
+			SprotoObject request = Proto.C2S.NewSprotoObject("C2GS_Ping.request");
 			request["str"] = "hello,world!";
-			RpcPackage Package = Proto.PackRequest("login_ping",request);
+			RpcPackage Package = Proto.PackRequest("C2GS_Ping",request);
 			TcpSocket.Send(Package.data,Package.size);
 		}
 

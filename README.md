@@ -10,7 +10,7 @@ SprotoTcpSocket is a wrapper of TcpClientSocket
 
 ## Usage
 ```
-1. import https://github.com/sundream/mysproto in Sproto directory
+1. git clone https://github.com/sundream/mysproto Sproto
 2. [in linux] use mcs to compile: mcs *.cs Test/*.cs Sproto/*.cs
 3. [in linux] run: ls *.exe | xargs mono
 
